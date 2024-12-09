@@ -1,4 +1,4 @@
-/* Time Complexity : O(2^n) && Space Complexity : O(n)
+/* Time Complexity : O(2^n) && Space Complexity : O(n)*/
 class Solution {
 public:
     int fib(int n) {
