@@ -1,9 +1,9 @@
 vector<int> topologicalSort(vector<vector<int>>& adj) {
        int n = adj.size();
-       
-       vector<bool> visited(n, 0);
+
        vector<int> inDeg(n, 0);
        queue<int> q;
+       
        for(int u = 0; u < n; u++)
        {
            for(int j = 0; j < adj[u].size(); j++)
