@@ -1,4 +1,5 @@
- void Dfs(vector<vector<int>>& adj, vector<bool>&visited, int u, stack<int>&s)
+// Time Complexity: O(V + E) && SC : O(V + E)
+void Dfs(vector<vector<int>>& adj, vector<bool>&visited, int u, stack<int>&s)
     {
         visited[u] = true;
         
