@@ -19,3 +19,5 @@ void union(int x, int y, vector<int> find)
       parent[x_parent] = y_parent;
    }
 }
+
+one vector array contains the parent of each set and one vector contains the set.  if there is 1 to 8 number(set) in a vector then in parent vector each num is parent of itself. when we join the two set then we change the parent accordingly.
