@@ -1,0 +1,21 @@
+Sets which intersection is NULL are called DSU. 
+Operations : 1. Combined two given sets(union) 2. Tell if two members belong to same set or not.(find)
+also called union-find beacause it union and find are two operations which it supports.
+
+
+int find(int i, vector<int>& parent)
+{
+   if(i == parent[i])
+      return i;
+
+    return find(parent[i], parent);
+}
+void union(int x, int y, vector<int> find)
+{
+   int x_parent = find(x, parent);
+   int y_parent = find(y, parent);
+   if(x_parent != y_parent)
+   {
+      parent[x_parent] = y_parent;
+   }
+}
