@@ -24,3 +24,39 @@ public:
         return res;
     }
 };
+
+// Approach 2 - Using map to store the freq of each element and process it accordingly
+// TC : O(n * n!) && SC : O(n! + n)
+class Solution {
+public:
+   void solve(vector<int> temp, vector<int>& nums, unordered_map<int, int>& mp, vector<vector<int>>& res)
+  {
+    if(temp.size() == nums.size())
+    {
+        res.push_back(temp);
+        return;
+    }
+    for(auto it :mp)
+    {
+        if(it.second != 0)
+        {
+            temp.push_back(it.first);
+            mp[it.first]--;
+            solve(temp, nums, mp, res);
+            mp[it.first]++;
+            temp.pop_back();
+        }
+    }
+  }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        unordered_map<int, int> mp;
+        for(int i = 0; i < nums.size(); i++)
+        {
+            mp[nums[i]]++;
+        }
+        vector<vector<int>> res;
+        vector<int> temp;
+        solve(temp, nums, mp, res);
+        return res;
+    }
+};
