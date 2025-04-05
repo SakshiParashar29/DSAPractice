@@ -36,3 +36,55 @@ public:
         return provinces;
     }
 };
+
+// Using BFS
+class Solution {
+public:
+    void Bfs(int u, vector<vector<int>>& adj, vector<bool>& visited)
+    {
+        queue<int> q;
+        q.push(u);
+        visited[u] = true;
+
+        while(!q.empty())
+        {
+            int v = q.front();
+            q.pop();
+
+            for(int i = 0; i < adj[v].size(); i++)
+            {
+                if(!visited[adj[v][i]])
+                {
+                    q.push(adj[v][i]);
+                    visited[adj[v][i]] = true;
+                }
+            }
+        }
+    }
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int provincesCnt = 0;
+        int V = isConnected.size();
+        vector<vector<int>> adj(V + 1);
+        for(int i = 1; i <= V; i++)
+        {
+            for(int j = 1; j <= V; j++)
+            {
+                if(isConnected[i - 1][j - 1] == 1 && i != j)
+                {
+                    adj[i].push_back(j);
+                }
+            }
+        }
+
+        vector<bool> visited(V+1, false);
+        for(int i = 1; i <= V; i++)
+        {
+            if(!visited[i])
+            {
+               Bfs(i, adj, visited);
+               provincesCnt++;
+            }  
+        }
+        return provincesCnt;
+    }
+};
