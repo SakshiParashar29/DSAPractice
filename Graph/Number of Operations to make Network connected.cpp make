@@ -1,0 +1,50 @@
+class Solution {
+public:
+   int find(int x, vector<int>& parent)
+   {
+       if(x != parent[x])
+          parent[x] = find(parent[x], parent);
+        return parent[x];
+   }
+   void unionSet(int x, int y, vector<int>& parent, vector<int>& rank)
+   {
+      int x_parent = find(x, parent);
+      int y_parent = find(y, parent);
+
+      if(rank[x_parent] > rank[y_parent])
+      {
+          parent[y_parent] = x_parent;
+      }
+      else if(rank[x_parent] < rank[y_parent])
+      {
+         parent[x_parent] = y_parent;
+      }
+      else
+      {
+        parent[y_parent] = x_parent;
+        rank[x_parent]++;
+      }
+   }
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        if(connections.size() < n - 1)
+           return -1;
+        vector<int> parent(n);
+        vector<int> rank(n, 0);
+
+        for(int i = 0; i < n; i++)
+        {
+            parent[i] = i;
+        }
+        int notConnected = 0, cables = 0;
+        for(auto& edge : connections)
+        {
+            unionSet(edge[0], edge[1], parent, rank);
+        }
+        for(int i = 0; i < n; i++)
+        {
+           if(find(i, parent) == i)
+              notConnected++;
+        }
+       return notConnected - 1;
+    }
+};
