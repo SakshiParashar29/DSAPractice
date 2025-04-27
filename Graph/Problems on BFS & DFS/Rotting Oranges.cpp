@@ -45,3 +45,58 @@ public:
         return (freshOranges == 0 ? time : -1);
     }
 };
+
+
+
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        queue<pair<int, int>> q;
+        int n = grid.size(), m = grid[0].size();
+        for(int i = 0; i < grid.size(); i++)
+        {
+            for(int j = 0; j < grid[0].size(); j++)
+            {
+                if(grid[i][j] == 2)
+                   q.push({i, j});
+            }
+        }
+
+        vector<vector<int>> directions = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        int time = 0;
+        while(!q.empty())
+        {
+            int size = q.size();
+            bool rotted = false;
+            while(size--)
+            {
+                int r = q.front().first;
+                int c = q.front().second;
+                q.pop();
+                for(auto& dir : directions)
+                {
+                    int r_ = r + dir[0];
+                    int c_ = c + dir[1];
+
+                    if(r_ >= 0 && c_ >= 0 && r_ < n && c_< m && grid[r_][c_] == 1)
+                    {
+                        grid[r_][c_] = 2;
+                        q.push({r_, c_});
+                        rotted = true;
+                    }
+                }
+            }
+           if(rotted) time++;
+        }
+        int freshOranges = 0;
+        for(int i = 0; i < grid.size(); i++)
+        {
+            for(int j = 0; j < grid[0].size(); j++)
+            {
+                if(grid[i][j] == 1)
+                   freshOranges++;
+            }
+        }
+        return freshOranges != 0 ? -1 : time;
+    }
+};
