@@ -20,8 +20,10 @@ for (; j < N; ++j) {
     ans = max(ans, j - i + 1); // the window [i, j] is the maximum window we've found thus far
 }
 return ans;
-What should we use as the state? It should be the sum of numbers in the window
-How to determine invalid? The window is invalid if (j - i + 1) * A[j] - sum > k.
+
+//always question this two what is the state and what is invalid then accordingly you can adjust the window size and solve.
+// What should we use as the state? It should be the sum of numbers in the window
+// How to determine invalid? The window is invalid if (j - i + 1) * A[j] - sum > k.
 
 
 
