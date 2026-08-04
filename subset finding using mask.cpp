@@ -4,7 +4,7 @@
 
 for(int i = 0; i < 2^n; i++){
   for(int mask = 0; mask < n; mask++){
-     if(mask && (1 << i){
+     if(i && (1 << mask){
        sum += nums[mask];
      }
   }
