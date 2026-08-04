@@ -5,7 +5,7 @@
 for(int i = 0; i < 2^n; i++){
   for(int mask = 0; mask < n; mask++){
      if(mask && (1 << i){
-       sum += nums[i];
+       sum += nums[mask];
      }
   }
   subsetSum.push_back(sum);
